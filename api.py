@@ -32,8 +32,8 @@ def index():
 @app.route('/beers') #endpoint that retrieves JSON of all beer info
 def get_beers():
     query = """
-    SELECT * FROM beer_data
-    ORDER BY key;
+        SELECT * FROM beer_data
+        ORDER BY key;
     """
     fetch = db_fetch(query, parameters=())
     return fetch
@@ -41,33 +41,34 @@ def get_beers():
 @app.route('/beers/<int:key>') #endpoint that retrieves JSON of a single beer by its 'key' in the table.
 def get_beer_by_key(key):
     query = """
-    SELECT * FROM beer_data
-    WHERE key = %s;
+        SELECT * FROM beer_data
+        WHERE key = %s;
     """
     parameters = (key,)
     fetch = db_fetch(query, parameters)
     return fetch
 
 @app.route('/search') #query parameter search endpoint that retrieves beers with all matches in their description in the table.
-def search_by_keywords():
-    search_result = '<h1> No beers found :( </h1>' 
-    def make_like_string(keywords):
-        result = ['%']
+def search():
+    def percentify(keywords):
+        percentified_keywords = []
         for word in keywords:
-            result.append(word + '%')
-        result = ''.join(result)
-        return result
-    try:
-        keywords = request.args.get('keywords').split(',')
-        keywords_for_search = (make_like_string(keywords),)
-    except:
-        return search_result
+            word = f'%{word}%'
+            percentified_keywords.append(word)
+        return percentified_keywords
+    keywords = request.args.get('keywords').split(',')
+    keywords_for_search = (percentify(keywords),)
     query = """
-    SELECT * FROM beer_data
-    WHERE description LIKE %s
-    ORDER BY key
-    LIMIT 20;
-    """
+        SELECT * FROM beer_data 
+        WHERE description ILIKE ANY (%s)
+        ORDER BY key
+        LIMIT 20;
+    """ 
     fetch = db_fetch(query, keywords_for_search)
+    if len(fetch) == 0:
+        return '<h1> No beers found </h1>' 
     return fetch
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
