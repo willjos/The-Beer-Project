@@ -10,22 +10,23 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;500&display=swap"
       rel="stylesheet"
     />
-    <title>&#x1F37A The Beer Project</title>
+    <link href="beer-mug.png" rel="icon" >
+    <title>The Beer Project</title>
   </head>
   <body class="body-container">
     <header class="header-bar">
       <h1>&#x1F37A The Beer Project &#x1F37A</h1>
-      <h3>The PUBlic forum for all things beer online.</h3>
+      <h3>The <span class="pub">PUB</span>lic forum for all things beer online.</h3>
     </header>
     <main class="main-page-content">
       <div class="documentation">
-        <h4>Documentation</h4>
+        <h3>Documentation</h3>
         <p>
           Beer lovers can access information about their favourite beers using
           this website.
         </p>
         <p>&#x1F37A The Beer Project &#x1F37A currently has four endpoints:</p>
-        <ul>
+        <ul class="endpoint-list">
           <li>'/' - the current website page</li>
           <li>'/beers' - raw JSON data for all 5500+ beers</li>
           <li>
@@ -39,26 +40,27 @@
             separated) keywords. For example:
             '/search?keywords=coffee,MaLtY,english.
           </li>
-          <p>
+          <li>
             The '/search' endpoint is utilised in the search bar functionality
             below.
-          </p>
+          </li>
         </ul>
       </div>
       <div class="search-functionality">
-        <h4>Beer search</h4>
-        <input
+        <h3>Beer search</h3>
+        <input class="search-by-description"
           placeholder="Search for a beer using one or more (comma separated) keywords contained within the description."
-        />
+        /><button class="search-button">Search</button>
       </div>
       <div class="search-results">
-        <h4>The Results</h4>
+        <h3>Results</h3>
+        <div class="results-box"></div>
       </div>
     </main>
     <footer class="footer-content">
-      <p>Thank you for using &#x1F37A The Beer Project &#x1F37A.</p>
-      <p>Created by Will Simms</p>
+      <span>Thank you for using The Beer Project</span>
+      <span>Created by Will Simms</span>
     </footer>
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>

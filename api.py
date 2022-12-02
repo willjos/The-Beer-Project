@@ -1,8 +1,17 @@
 import psycopg2
 import psycopg2.extras  # We'll need this to convert SQL responses into dictionaries
 from flask import Flask, current_app, request
+# from flask_cors import CORS
 
 app = Flask(__name__)
+
+# cors_config = {
+#     "origins": ["http://localhost:5000"]
+# }
+
+# CORS(app, resources={
+#     "/*": cors_config
+# })
 
 def get_db_connection(): # sets up a connection to my beer_data database in postgres
   try:
