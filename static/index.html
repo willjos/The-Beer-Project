@@ -3,9 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Beer Project</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>&#x1F37A The Beer Project</title>
   </head>
-  <body>
+  <body class="body-container">
+    <header class="header-bar">
+      <h1>&#x1F37A The Beer Project &#x1F37A</h1>
+      <h3>The PUBlic forum for all things beer online.</h3>
+    </header>
+    <main class="main-page-content">
+      <div class="documentation">
+        <h4>Documentation</h4>
+        <p>
+          Beer lovers can access information about their favourite beers using
+          this website.
+        </p>
+        <p>&#x1F37A The Beer Project &#x1F37A currently has four endpoints:</p>
+        <ul>
+          <li>'/' - the current website page</li>
+          <li>'/beers' - raw JSON data for all 5500+ beers</li>
+          <li>
+            '/beers/{key}' - raw JSON data for an individual beer, accessed via
+            its key number.
+          </li>
+          <li>
+            '/search' - this is a search endpoint that takes keyword query
+            parameters and returns raw JSON. Users can do a case-insensitive
+            search for beers with descriptions containing one or more (comma
+            separated) keywords. For example:
+            '/search?keywords=coffee,MaLtY,english.
+          </li>
+          <p>
+            The '/search' endpoint is utilised in the search bar functionality
+            below.
+          </p>
+        </ul>
+      </div>
+      <div class="search-functionality">
+        <h4>Beer search</h4>
+        <input
+          placeholder="Search for a beer using one or more (comma separated) keywords contained within the description."
+        />
+      </div>
+      <div class="search-results">
+        <h4>The Results</h4>
+      </div>
+    </main>
+    <footer class="footer-content">
+      <p>Thank you for using &#x1F37A The Beer Project &#x1F37A.</p>
+      <p>Created by Will Simms</p>
+    </footer>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

@@ -66,9 +66,8 @@ def search():
     """ 
     fetch = db_fetch(query, keywords_for_search)
     if len(fetch) == 0:
-        return '<h1> No beers found </h1>' 
+        return '<h1> No beers found. </h1>' 
     return fetch
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
