@@ -1,17 +1,11 @@
 import psycopg2
 import psycopg2.extras  # We'll need this to convert SQL responses into dictionaries
 from flask import Flask, current_app, request
-# from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-# cors_config = {
-#     "origins": ["http://localhost:5000"]
-# }
-
-# CORS(app, resources={
-#     "/*": cors_config
-# })
+CORS(app)
 
 def get_db_connection(): # sets up a connection to my beer_data database in postgres
   try:
@@ -71,7 +65,7 @@ def search():
         SELECT * FROM beer_data 
         WHERE description ILIKE ANY (%s)
         ORDER BY key
-        LIMIT 20;
+        LIMIT 5;
     """ 
     fetch = db_fetch(query, keywords_for_search)
     if len(fetch) == 0:
